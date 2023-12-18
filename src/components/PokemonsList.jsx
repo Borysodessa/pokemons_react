@@ -56,6 +56,7 @@ export function PokemonsList() {
         });
       });
   }
+
   return (
     <div className={styles.wrap}>
       <button className={styles.buttonLoad} onClick={handleClick}>
