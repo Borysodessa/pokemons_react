@@ -1,18 +1,34 @@
-import { useSelector, useDispatch } from "react-redux";
+import styles from "./Pokemon.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPokemons } from "./PokemonsList";
 
 export function Pagination() {
-  const page = useSelector((state) => state);
   const dispatch = useDispatch();
-  function handIncrement() {
+  const page = useSelector((state) => state.pagination.page);
+  const pageSize = useSelector((state) => state.pagination.pageSize);
+
+  function handleIncrease() {
+    fetchPokemons(pageSize, page + 1);
+
     dispatch({
-      type: "CHANGE_PAGE",
-      pageValue: value,
+      type: "INCREASE_PAGE",
     });
   }
+
+  function handleDecrease() {
+    fetchPokemons(pageSize, page - 1);
+    dispatch({
+      type: "DECREASE_PAGE",
+    });
+  }
+
   return (
     <div>
-      <button onclick={handleIncrement}>назад</button>
-      <button onclick={handleDecrement}>вперед</button>
+      <button onClick={handleDecrease} disabled={page <= 1}>
+        назад
+      </button>
+      <span className={styles.page}>{page}</span>
+      <button onClick={handleIncrease}>вперед</button>
     </div>
   );
 }

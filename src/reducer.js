@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-
 import { paginationReducer } from "./reducer/paginationSlice";
 import { toogleReducer } from "./reducer/toogleSlice";
 import { pokemonsReducer } from "./reducer/pokemonsSlice";

@@ -1,4 +1,4 @@
-const initialState = ["1", "4", "5"];
+const initialState = [];
 
 export function toogleReducer(state = initialState, action) {
   if (action.type === "CAUGHT_TOOGLE") {
