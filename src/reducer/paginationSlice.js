@@ -1,5 +1,5 @@
 const initialState = {
-  pageSize: 8,
+  pageSize: 4,
   page: 1,
 };
 export function paginationReducer(state = initialState, action) {
@@ -12,6 +12,5 @@ export function paginationReducer(state = initialState, action) {
   if (action.type === "CHANGE_PAGE_SIZE") {
     return { ...state, pageSize: action.etarget };
   }
-
   return state;
 }

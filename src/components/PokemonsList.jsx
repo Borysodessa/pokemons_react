@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styles from "./Pokemon.module.css";
 import { Pokemon } from "./Pokemon";
 import { Counter } from "./counter";
@@ -7,8 +8,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 export function fetchPokemons(pageSize, page) {
   const offset = page * pageSize - pageSize;
-  const limit = pageSize;
-  console.log("11111111", pageSize);
+  console.log("4546546", pageSize);
+  let limit = pageSize;
+
   const url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`;
   console.log("****", url);
   return fetch(url)
@@ -24,27 +26,27 @@ export function fetchPokemons(pageSize, page) {
     });
 }
 
-export function PokemonsList({ fetchPok }) {
+export function PokemonsList() {
   const pokemons = useSelector((state) => state.pokemons);
   const pageSize = useSelector((state) => state.pagination.pageSize);
   const page = useSelector((state) => state.pagination.page);
   const dispatch = useDispatch();
 
-  function handleClick() {
+  useEffect(() => {
     fetchPokemons(pageSize, page).then((pokemons) => {
       dispatch({
         type: "LOAD_POKEMONS",
         pokemons: pokemons,
       });
     });
-  }
+  }, [pageSize, page]);
 
   return (
     <div className={styles.mainWrap}>
       <div className={styles.wrap}>
-        <button className={styles.buttonLoad} onClick={handleClick}>
+        {/* <button className={styles.buttonLoad} onClick={handleClick}>
           Загрузить покемонов
-        </button>
+        </button> */}
         <Counter />
         <SelectPerPage />
         {pokemons.map((pokemon) => (

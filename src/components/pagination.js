@@ -1,25 +1,38 @@
 import styles from "./Pokemon.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPokemons } from "./PokemonsList";
+// import { fetchPokemons } from "./PokemonsList";
 
 export function Pagination() {
   const dispatch = useDispatch();
+
   const page = useSelector((state) => state.pagination.page);
-  const pageSize = useSelector((state) => state.pagination.pageSize);
+  // const pageSize = useSelector((state) => state.pagination.pageSize);
 
   function handleIncrease() {
-    fetchPokemons(pageSize, page + 1);
-
     dispatch({
       type: "INCREASE_PAGE",
     });
+
+    // fetchPokemons(pageSize, page + 1).then((pokemons) => {
+    //   dispatch({
+    //     type: "UPDATE_PAGESIZE",
+    //     pokemons: pokemons,
+    //   });
+    // });
   }
 
   function handleDecrease() {
-    fetchPokemons(pageSize, page - 1);
     dispatch({
       type: "DECREASE_PAGE",
     });
+
+    // fetchPokemons(pageSize, page - 1).then((pokemons) => {
+    //   console.log(pokemons);
+    //   dispatch({
+    //     type: "UPDATE_PAGESIZE",
+    //     pokemons: pokemons,
+    //   });
+    // });
   }
 
   return (

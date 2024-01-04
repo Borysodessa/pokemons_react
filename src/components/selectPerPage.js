@@ -1,22 +1,32 @@
 import { useState } from "react";
 import styles from "./Pokemon.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPokemons } from "./PokemonsList";
 const possibleQuantitysPokemons = [4, 8, 12, 14, 16, 20, 24, 28];
 
 export function SelectPerPage() {
   const [openQuantity, setOpenQuantity] = useState(false);
   const dispatch = useDispatch();
-
+  const pokemons = useSelector((state) => state.pokemons);
+  const page = useSelector((state) => state.pagination.page);
+  const pageSize = useSelector((state) => state.pagination.pageSize);
   function openQuontityList() {
     setOpenQuantity(!openQuantity);
   }
-
   function changePageSize(e) {
     setOpenQuantity(!openQuantity);
     dispatch({
       type: "CHANGE_PAGE_SIZE",
       etarget: e.target.textContent,
     });
+    // dispatch({
+    //   type: "LOAD_POKEMONS",
+    //   pokemons: pokemons,
+    // });
+    // dispatch({
+    //   type: "UPDATE_PAGESIZE_2",
+    //   pokemons: pokemons,
+    // });
   }
 
   return (

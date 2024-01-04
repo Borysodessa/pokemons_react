@@ -1,13 +1,15 @@
-import { combineReducers } from "redux";
+// import { combineReducers } from "redux";
 import { paginationReducer } from "./reducer/paginationSlice";
 import { toogleReducer } from "./reducer/toogleSlice";
 import { pokemonsReducer } from "./reducer/pokemonsSlice";
 
-export const rootReducer = combineReducers({
+// https://redux.js.org/api/combinereducers
+
+export const rootReducer = function combineReducers({
   pagination: paginationReducer,
   caughtPokemonsIds: toogleReducer,
   pokemons: pokemonsReducer,
-});
+})
 
 //combineReducers
 
@@ -16,3 +18,10 @@ export const rootReducer = combineReducers({
 //   pokemons: [...],
 //   caughtPokemonsIds: ["1", "4", "5"];
 // }
+
+// https://maxcode.dev/problems/group-by-equality
+// https://maxcode.dev/problems/map-group-by
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+// https://maxcode.dev/courses/async
+// race, simple-all, all
